@@ -1,14 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Formfill from './component/Form';
 import data from "./membersData"
 import { Route, Link } from "react-router-dom";
 import MemberList from './component/MemberList';
+import axios from "axios"
 
 
 function App() {
   const [members, setNewMember] = useState(data);
+  const [images, setImages] = useState();
+
   const addNewMember= member =>{
+   
+      axios
+        .get(`https://source.unsplash.com/random/318x180`)
+        .then(response => {
+          setImages(response);
+          console.log(response)
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  
     const newMember={
       name: member.name,
       id:Date.now(),
@@ -19,12 +33,14 @@ function App() {
     }
     setNewMember([...members, newMember])
   }
+  
   return (<>
     <div className="membersList">
       <Link to="/Formfill">
       <button>click me</button>
       </Link>
-    <MemberList members={members}/>
+      <Route exact path="/" render={props=> <MemberList {...props} members={members}/>}/>
+    
     </div>
 
     <Route

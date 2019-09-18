@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"
+
 import {
   Card,
   CardImg,
@@ -13,6 +15,8 @@ import {
 } from "reactstrap";
 
 function MemberList(props) {
+    
+   
   return (
     <div >
     
@@ -25,7 +29,9 @@ function MemberList(props) {
         <CardTitle>{item.name}</CardTitle>
         <CardSubtitle>{item.role}</CardSubtitle>
         <CardText>{item.bio}</CardText>
-          <Button>Go somewhere</Button>
+        <CardSubtitle>{item.email}</CardSubtitle>
+
+          <Button>Edit</Button>
         </Card>
    
       
