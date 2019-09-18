@@ -7,12 +7,31 @@ import MemberList from './component/MemberList';
 
 
 function App() {
-  const [members] = useState(data);
-
-  return (
+  const [members, setNewMember] = useState(data);
+  const addNewMember= member =>{
+    const newMember={
+      name: member.name,
+      id:Date.now(),
+      pic:"https://source.unsplash.com/random/318x180",
+      email: member.email,
+      role: member.role,
+      bio: member.bio
+    }
+    setNewMember([...members, newMember])
+  }
+  return (<>
     <div className="membersList">
+      <Link to="/Formfill">
+      <button>click me</button>
+      </Link>
     <MemberList members={members}/>
     </div>
+
+    <Route
+        path="/Formfill"
+        render={props => <Formfill {...props} addNewMember={addNewMember} />}
+      />
+    </>
   );
 }
 
