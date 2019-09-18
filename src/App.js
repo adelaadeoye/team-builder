@@ -1,11 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 import Formfill from './component/Form';
+import data from "./membersData"
+import { Route, Link } from "react-router-dom";
+import MemberList from './component/MemberList';
+
 
 function App() {
+  const [members] = useState(data);
+
   return (
-    <Formfill/>
+    <div className="membersList">
+    <MemberList members={members}/>
+    </div>
   );
 }
 

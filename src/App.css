@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+.membersList{
+  display:  flex;
+  flex-direction: row;
+  width: 800px;
+  margin: 0px auto;
+}
